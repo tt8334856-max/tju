@@ -1,0 +1,19 @@
+{
+  "name": "天津大学考研每日任务",
+  "short_name": "天大备考",
+  "description": "记录每天的考研任务与奖励，向天津大学稳步靠近。",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff8e8",
+  "theme_color": "#12385f",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

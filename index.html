@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#12385f" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <title>奔赴天津大学的每一天</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero-card" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">天津大学考研 · 每日任务日志</p>
+          <h1 id="page-title">奔赴天津大学的每一天</h1>
+          <p class="hero-text">
+            不必一次抵达终点。把今天的任务写下来、完成它、勾掉它，
+            你就在把那个清晰的录取通知一点点拉近。
+          </p>
+          <div class="hero-date" data-today></div>
+        </div>
+        <div class="goal-card" aria-label="考研目标卡">
+          <div class="sun-orbit"></div>
+          <span class="goal-label">目标院校</span>
+          <strong>天津大学</strong>
+          <p>以热爱为锚，以行动为桨。</p>
+        </div>
+      </section>
+
+      <section class="dashboard-grid" aria-label="学习记录面板">
+        <article class="task-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Today</p>
+              <h2>今日任务</h2>
+            </div>
+            <p class="progress-number"><span data-progress-text>0%</span></p>
+          </div>
+
+          <form class="task-form" data-task-form>
+            <input
+              data-task-input
+              type="text"
+              maxlength="80"
+              placeholder="例如：完成数学真题一套"
+              aria-label="输入今日学习任务"
+            />
+            <button type="submit">添加</button>
+          </form>
+
+          <div class="progress-track" aria-label="今日任务完成进度">
+            <div class="progress-bar" data-progress-bar></div>
+          </div>
+
+          <p class="completion-message" data-completion-message>
+            先完成一件最小的事，让今天开始滚动起来。
+          </p>
+
+          <p class="empty-state" data-empty-state>
+            今天还没有任务。写下一件最想完成的小事，我们从这里开始。
+          </p>
+          <ul class="task-list" data-task-list></ul>
+        </article>
+
+        <aside class="stats-panel" aria-label="学习统计">
+          <div class="stat-card primary">
+            <span>连续完成</span>
+            <strong><span data-streak>0</span> 天</strong>
+          </div>
+          <label class="reward-card">
+            <span>今日奖励金额</span>
+            <div class="reward-input-wrap">
+              <span>￥</span>
+              <input
+                data-reward-input
+                type="number"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                placeholder="输入金额"
+                aria-label="输入今日奖励金额"
+              />
+            </div>
+            <div class="reward-total">
+              <span>总金额</span>
+              <strong>￥<span data-total-reward>0.00</span></strong>
+            </div>
+            <small>每天给自己一份看得见的奖励。</small>
+          </label>
+          <div class="stat-card">
+            <span>今日完成</span>
+            <strong><span data-completed-count>0</span>/<span data-total-count>0</span></strong>
+          </div>
+          <div class="stat-card">
+            <span>累计勾选</span>
+            <strong><span data-total-finished>0</span> 项</strong>
+          </div>
+          <div class="quote-card">
+            <span>每日一句</span>
+            <p data-encouragement></p>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
