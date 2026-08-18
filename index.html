@@ -34,40 +34,75 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">Today</p>
-              <h2>今日任务</h2>
+              <h2>每日任务</h2>
             </div>
             <p class="progress-number"><span data-progress-text>0%</span></p>
           </div>
 
-          <form class="task-form" data-task-form>
-            <input
-              data-task-input
-              type="text"
-              maxlength="80"
-              placeholder="例如：完成数学真题一套"
-              aria-label="输入今日学习任务"
-            />
-            <button type="submit">添加</button>
-          </form>
+          <div class="date-controls">
+            <label>
+              <span>查看学习日期</span>
+              <input data-date-picker type="date" aria-label="选择学习记录日期" />
+            </label>
+            <button data-today-button type="button">回到今天</button>
+          </div>
+          <p class="viewing-date" data-viewing-date></p>
 
           <div class="progress-track" aria-label="今日任务完成进度">
             <div class="progress-bar" data-progress-bar></div>
           </div>
 
           <p class="completion-message" data-completion-message>
-            先完成一件最小的事，让今天开始滚动起来。
+            从五项里先勾掉一项，让今天开始稳稳滚动起来。
           </p>
 
-          <p class="empty-state" data-empty-state>
-            今天还没有任务。写下一件最想完成的小事，我们从这里开始。
-          </p>
           <ul class="task-list" data-task-list></ul>
         </article>
 
         <aside class="stats-panel" aria-label="学习统计">
+          <article class="political-tip-card">
+            <span>考研政治小知识</span>
+            <small data-political-tip-category></small>
+            <strong data-political-tip-title></strong>
+            <p data-political-tip-body></p>
+            <div class="political-tip-actions">
+              <button data-next-political-tip type="button">换一条</button>
+              <button data-favorite-political-tip type="button" aria-pressed="false">收藏</button>
+              <button data-toggle-favorites type="button" aria-expanded="false">查看收藏</button>
+            </div>
+            <div class="political-favorites" data-favorites-panel hidden>
+              <strong>收藏的知识</strong>
+              <ul data-favorites-list></ul>
+              <p data-favorites-empty>还没有收藏，遇到重要知识时点一下“收藏”。</p>
+            </div>
+          </article>
           <div class="stat-card primary">
             <span>连续完成</span>
-            <strong><span data-streak>0</span> 天</strong>
+            <label class="stat-input-wrap">
+              <input
+                data-streak-input
+                type="number"
+                min="0"
+                step="1"
+                inputmode="numeric"
+                aria-label="输入连续完成天数"
+              />
+              <strong>天</strong>
+            </label>
+          </div>
+          <div class="stat-card">
+            <span>学习总天数</span>
+            <label class="stat-input-wrap">
+              <input
+                data-study-days-input
+                type="number"
+                min="0"
+                step="1"
+                inputmode="numeric"
+                aria-label="输入学习总天数"
+              />
+              <strong>天</strong>
+            </label>
           </div>
           <label class="reward-card">
             <span>今日奖励金额</span>
@@ -85,17 +120,23 @@
             </div>
             <div class="reward-total">
               <span>总金额</span>
-              <strong>￥<span data-total-reward>0.00</span></strong>
+              <div class="reward-total-input">
+                <span>￥</span>
+                <input
+                  data-total-reward-input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  inputmode="decimal"
+                  aria-label="输入总奖励金额"
+                />
+              </div>
             </div>
             <small>每天给自己一份看得见的奖励。</small>
           </label>
           <div class="stat-card">
             <span>今日完成</span>
             <strong><span data-completed-count>0</span>/<span data-total-count>0</span></strong>
-          </div>
-          <div class="stat-card">
-            <span>累计勾选</span>
-            <strong><span data-total-finished>0</span> 项</strong>
           </div>
           <div class="quote-card">
             <span>每日一句</span>
