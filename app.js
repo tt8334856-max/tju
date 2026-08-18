@@ -253,18 +253,20 @@ export function getDailyStats(state, date) {
   const total = tasks.length;
   const completed = tasks.filter((task) => task.completed).length;
   const completionRate = total === 0 ? 0 : Math.round((completed / total) * 100);
+  const isQualified = total > 0 && completionRate >= 50;
 
   return {
     total,
     completed,
     completionRate,
     allComplete: total > 0 && completed === total,
+    isQualified,
   };
 }
 
 export function updateCompletionRecord(state, date) {
   const stats = getDailyStats(state, date);
-  if (!stats.allComplete || state.lastCompletedDate === date) return state;
+  if (!stats.isQualified || state.lastCompletedDate === date) return state;
 
   const yesterday = getOffsetDate(date, -1);
   const streak = state.lastCompletedDate === yesterday ? state.streak + 1 : 1;
@@ -272,6 +274,7 @@ export function updateCompletionRecord(state, date) {
   return {
     ...state,
     streak,
+    studyDays: state.studyDays + 1,
     lastCompletedDate: date,
   };
 }
@@ -461,10 +464,14 @@ function mountApp() {
     progressText.textContent = `${stats.completionRate}%`;
     completedCount.textContent = String(stats.completed);
     totalCount.textContent = String(stats.total);
-    completionMessage.textContent = stats.allComplete
-      ? `${selectedDate === today ? '今天' : '这一天'}五项都完成了，天大路上又稳了一步。`
-      : '从五项里先勾掉一项，让这一天开始稳稳滚动起来。';
-    completionMessage.classList.toggle('is-complete', stats.allComplete);
+    if (stats.allComplete) {
+      completionMessage.textContent = (selectedDate === today ? "今天" : "这一天") + "五项都完成了，天大路上又稳了一步。";
+    } else if (stats.isQualified) {
+      completionMessage.textContent = "今天已完成有效打卡，继续冲满五项更稳。";
+    } else {
+      completionMessage.textContent = "完成 3 项就算今天有效学习打卡。";
+    }
+    completionMessage.classList.toggle("is-complete", stats.isQualified);
     renderPoliticalTip();
   }
 
