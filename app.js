@@ -269,12 +269,12 @@ export function updateCompletionRecord(state, date) {
   if (!stats.isQualified || state.lastCompletedDate === date) return state;
 
   const yesterday = getOffsetDate(date, -1);
-  const streak = state.lastCompletedDate === yesterday ? state.streak + 1 : 1;
+  const streak = normalizeNonNegativeInteger(state.streak) + 1;
 
   return {
     ...state,
     streak,
-    studyDays: state.studyDays + 1,
+    studyDays: normalizeNonNegativeInteger(state.studyDays) + 1,
     lastCompletedDate: date,
   };
 }
